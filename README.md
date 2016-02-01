@@ -28,17 +28,17 @@ In your R enviroment (in the same folder where the data files are), load the scr
 source('run_analysis.R')
 ```
 
-The end result will be a file called final_tidy_dataset.txt' in the output folder.
+The end result will be a file called tidy_DS.txt' in the output folder.
 
 ```
 $ ls output/
 -rw-rw-r--  225125 final_tidy_dataset.csv
 -rw-rw-r--  225122 final_tidy_dataset.txt
--rw-rw-r-- 8338031 whole_dataset_with_descriptive_activity_names.csv
+-rw-rw-r-- 8338031 total_DS_with_activity_names.csv
 ```
 
-final_tidy_dataset.csv mirrors the .txt file in .csv format for your convenience. whole_dataset_with_descriptive_activity_names.csv is an intermediate file used during the analysis.
+tidy_DS.csv mirrors the .txt file in .csv format for your convenience. total_DS_with_activity_names.csv is an intermediate file used during the analysis.
 
 ##Final tidy dataset
 
-Each row in the final, clean dataset contains subject, activity, and measures for all required features (i.e., mean or standard deviation).
+Each row in the final, clean dataset contains Subject, Activity, and measures for all required features (i.e., mean or standard deviation).
