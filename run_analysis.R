@@ -36,33 +36,15 @@ filtered_dataset <- X_DS[, feature_selected_columns]
 names(filtered_dataset) <- features[features$id %in% feature_selected_columns, 2]
 X_filtered_dataset <- filtered_dataset
 
-
 ### 3. Uses descriptive activity names to name the activities in the data set.
 activity_labels <- read.table('./UCI HAR Dataset/activity_labels.txt', header=FALSE, col.names=c('id', 'name'))
 
-
 ### 4. Appropriately labels the data set with descriptive variable names.
 Y_DS[, 1] = activity_labels[Y_DS[, 1], 2]
-total_DS <- cbind(subjectDS, Y_DS, X_filtered_dataset)
-names(total_DS)
-
-names(total_DS)<-gsub("Acc", "Accelerometer", names(total_DS))
-names(total_DS)<-gsub("Gyro", "Gyroscope", names(total_DS))
-names(total_DS)<-gsub("BodyBody", "Body", names(total_DS))
-names(total_DS)<-gsub("Mag", "Magnitude", names(total_DS))
-names(total_DS)<-gsub("^t", "Time", names(total_DS))
-names(total_DS)<-gsub("^f", "Frequency", names(total_DS))
-names(total_DS)<-gsub("tBody", "TimeBody", names(total_DS))
-names(total_DS)<-gsub("-mean()", "Mean", names(total_DS), ignore.case = TRUE)
-names(total_DS)<-gsub("-std()", "STD", names(total_DS), ignore.case = TRUE)
-names(total_DS)<-gsub("-freq()", "Frequency", names(total_DS), ignore.case = TRUE)
-names(total_DS)<-gsub("angle", "Angle", names(total_DS))
-names(total_DS)<-gsub("gravity", "Gravity", names(total_DS))
-
 
 ### 5. From the data set in step 4, creates a second, independent tidy data set with the average 
 ###    of each variable for each activity and each subject.
-
+total_DS <- cbind(subjectDS, Y_DS, X_filtered_dataset)
 write.table(total_DS, "./UCI HAR Dataset/output/total_DS_with_activity_names.csv")
 
 measurements <- total_DS[, 3:dim(total_DS)[2]]
@@ -70,3 +52,4 @@ tidY_DS <- aggregate(measurements, list(total_DS$Subject, total_DS$Activity), me
 names(tidY_DS)[1:2] <- c('Subject', 'Activity')
 write.csv(tidY_DS, "./UCI HAR Dataset/output/final_tidY_DS.csv")
 write.table(tidY_DS, "./UCI HAR Dataset/output/final_tidY_DS.txt")
+
